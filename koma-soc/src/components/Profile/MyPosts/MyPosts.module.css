@@ -1,0 +1,15 @@
+.postsBlock {
+  padding: 10px;
+}
+
+.posts {
+  margin-top: 20px;
+}
+
+.item {
+    color: gold;
+  }
+
+.item img {
+    width: 50px;
+}

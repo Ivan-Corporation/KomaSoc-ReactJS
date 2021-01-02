@@ -1,0 +1,13 @@
+.item {
+    color: gold;
+  }
+
+.item img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+}
+
+span {
+  background-color: rgb(0, 0, 0);
+}
