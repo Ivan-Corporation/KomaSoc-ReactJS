@@ -9,18 +9,22 @@ import Videos from './components/Videos/Videos';
 import Settings from './components/Settings/Settings';
 
 
-function App() {
+const App = (props) => {
+
+
   return (
     <BrowserRouter>
       <div className='app-wrapper'>
         <Header />
         <Navbar />
         <div className='app-wrapper-content'>
-          <Route path="/profile" component={Profile} />
-          <Route path="/dialogs" component={Dialogs} />
-          <Route path="/news" component={News} />
-          <Route path="/videos" component={Videos} />
-          <Route path="/settings" component={Settings} />
+
+
+          <Route path="/profile" render={() => <Profile state={props.state.profilePage} />} />
+          <Route path="/dialogs" render={() => <Dialogs state={props.state.dialogsPage} />} />
+          <Route path="/news" render={() => <News />} />
+          <Route path="/videos" render={() => <Videos />} />
+          <Route path="/settings" render={() => <Settings />} />
         </div>
       </div>
     </BrowserRouter>
