@@ -7,7 +7,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import News from './components/News/News';
 import Videos from './components/Videos/Videos';
 import Settings from './components/Settings/Settings';
-import { addPost, updateNewPostText } from './redux/state';
+import store, { addPost, updateNewPostText } from './redux/state';
 
 
 const App = (props) => {
@@ -22,11 +22,11 @@ const App = (props) => {
         <div className='app-wrapper-content'>
 
 
-          <Route path="/profile" render={() => <Profile profilePage={props.state.profilePage}
-
+          <Route path="/profile" render={() => <Profile
+            profilePage={props.state.profilePage}
             dispatch={props.dispatch} />} />
 
-          <Route path="/dialogs" render={() => <Dialogs state={props.state.dialogsPage} />} />
+          <Route path="/dialogs" render={() => <Dialogs store={props.store} />} />
           <Route path="/news" render={() => <News />} />
           <Route path="/videos" render={() => <Videos />} />
           <Route path="/settings" render={() => <Settings />} />
