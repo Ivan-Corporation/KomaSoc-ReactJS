@@ -1,9 +1,19 @@
-import store from "./state";
+import store from "./store";
 
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 
-const profileReducer = (state, action) => {
+let initialState = {
+    posts:
+        [
+            { id: 1, message: 'I love Sabaton!!!', likesCount: 20 },
+            { id: 2, message: 'Hey?! I here alone?', likesCount: 12 },
+            { id: 3, message: 'Okay...', likesCount: 2 },
+        ],
+    newPostText: 'KomaCorp'
+}
+
+const profileReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case ADD_POST:
