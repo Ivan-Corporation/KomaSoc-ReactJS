@@ -7,8 +7,8 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import News from './components/News/News';
 import Videos from './components/Videos/Videos';
 import Settings from './components/Settings/Settings';
-import store, { addPost, updateNewPostText } from './redux/store';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
+import UsersContainer from './components/Users/UsersContainer';
 
 
 const App = (props) => {
@@ -24,12 +24,17 @@ const App = (props) => {
 
 
           <Route path="/profile" render={() => <Profile
-            store={props.store} />} />
+          />} />
 
-          <Route path="/dialogs" render={() => <DialogsContainer store={props.store} />} />
+          <Route path="/dialogs" render={() => <DialogsContainer />} />
+          <Route path="/users" render={() => <UsersContainer />} />
+
+
           <Route path="/news" render={() => <News />} />
           <Route path="/videos" render={() => <Videos />} />
-          <Route path="/settings" render={() => <Settings />} />
+          <Route path="/settings" render={() => <Settings />}
+
+          />
         </div>
       </div>
     </BrowserRouter>
