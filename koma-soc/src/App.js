@@ -32,9 +32,7 @@ const App = (props) => {
 
           <Route path="/news" render={() => <News />} />
           <Route path="/videos" render={() => <Videos />} />
-          <Route path="/settings" render={() => <Settings />}
-
-          />
+          <Route path="/settings" render={() => <Settings />} />
         </div>
       </div>
     </BrowserRouter>
