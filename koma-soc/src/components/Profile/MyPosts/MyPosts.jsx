@@ -29,6 +29,7 @@ const MyPosts = (props) => {
         <div className={classes.postsBlock}>
             <h3> My posts</h3>
             <div>
+
                 <div>
                     <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText} />
                 </div>
@@ -40,6 +41,7 @@ const MyPosts = (props) => {
                 {postsElements}
             </div>
         </div>
+
     )
 }
 
