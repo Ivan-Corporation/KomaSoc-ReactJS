@@ -1,9 +1,8 @@
 import { connect } from "react-redux";
-import { followAC, setCurrentPageAC, setUsersAC, unfollowAC, setUsersTotalCountAC, toogleIsFetchingAC } from "../../redux/users-reducer";
+import { follow, setCurrentPage, setUsers, unfollow, setTotalUsersCount, toogleIsFetching } from "../../redux/users-reducer";
 import * as axios from 'axios'
 import React from 'react'
 import Users from './Users';
-import preloader from '../../assets/images/sun.svg';
 import Preloader from "../common/preloader/Preloader";
 
 
@@ -64,29 +63,41 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userId) => {
-            dispatch(followAC(userId));
-        },
-        unfollow: (userId) => {
-            dispatch(unfollowAC(userId));
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users));
-        },
-        setCurrentPage: (pageNumber) => {
-            dispatch(setCurrentPageAC(pageNumber));
-        },
-        setTotalUsersCount: (totalCount) => {
-            dispatch(setUsersTotalCountAC(totalCount));
-        },
-        toogleIsFetching: (isFetching) => {
-            dispatch(toogleIsFetchingAC(isFetching));
-        },
+// let mapDispatchToProps = (dispatch) => {
+//     return {
+//         follow: (userId) => {
+//             dispatch(followAC(userId));
+//         },
+//         unfollow: (userId) => {
+//             dispatch(unfollowAC(userId));
+//         },
+//         setUsers: (users) => {
+//             dispatch(setUsersAC(users));
+//         },
+//         setCurrentPage: (pageNumber) => {
+//             dispatch(setCurrentPageAC(pageNumber));
+//         },
+//         setTotalUsersCount: (totalCount) => {
+//             dispatch(setUsersTotalCountAC(totalCount));
+//         },
+//         toogleIsFetching: (isFetching) => {
+//             dispatch(toogleIsFetchingAC(isFetching));
+//         },
 
 
-    }
-}
+//     }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+
+
+
+
+export default connect(mapStateToProps, {
+    follow,
+    unfollow,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    toogleIsFetching
+})
+    (UsersContainer);

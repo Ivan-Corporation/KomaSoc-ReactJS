@@ -1,10 +1,11 @@
 import DefaultPhoto from '../../assets/images/DefaultPhoto.png'
 import styles from './Users.module.css'
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 
 
-debugger
+
 let Users = (props) => {
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -27,11 +28,14 @@ let Users = (props) => {
             </div>
 
             {
-                this.props.users.map(u => <div key={u.id}>
+                props.users.map(u => <div key={u.id}>
                     <span>
                         <div>
-                            <img src={u.uniqueUrlName || DefaultPhoto.png} className={styles.userPhoto} />
+                            <NavLink to={'/profile/' + u.id}>
+                                <img src={u.photos.small != null ? u.photos.small : DefaultPhoto} className={styles.userPhoto} />
+                            </NavLink>
                         </div>
+
 
                         <div>
                             {u.followed ?
@@ -45,10 +49,7 @@ let Users = (props) => {
                             <div>{u.name}</div>
                             <div>{u.status}</div>
                         </span>
-                        <span>
-                            <div>{u.location.country}</div>
-                            <div>{u.location.city}</div>
-                        </span>
+
                     </span>
                 </div>)
             }
