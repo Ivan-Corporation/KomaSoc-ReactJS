@@ -1,36 +1,24 @@
 import { connect } from "react-redux";
-import { follow, setCurrentPage, setUsers, unfollow, setTotalUsersCount, toogleIsFetching, toogleFollowingProgress, getUsersThunkCreator } from "../../redux/users-reducer";
+import { follow, setCurrentPage, unfollow, toogleFollowingProgress, getUsers } from "../../redux/users-reducer";
 import * as axios from 'axios'
 import React from 'react'
 import Users from './Users';
 import Preloader from "../common/preloader/Preloader";
-import { getUsers } from "../../api/api";
+import { UsersAPI } from './../../api/api';
+
 
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
 
-        this.props.getUsersThunkCreator();
+        this.props.getUsers(this.props.currentPage, this.props.pageSize);
 
-        // this.props.toogleIsFetching(true);
-
-        // getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-        //     this.props.toogleIsFetching(false);
-        //     this.props.setUsers(data.items);
-        //     this.props.setTotalUsersCount(data.totalCount);
-        // });
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.setCurrentPage(pageNumber);
-        this.props.toogleIsFetching(true);
+        this.props.getUsers(pageNumber, this.props.pageSize);
 
-        getUsers(pageNumber, this.props.pageSize).then(data => {
-            this.props.toogleIsFetching(false);
-            this.props.setUsers(data.items);
-
-        });
     }
 
 
@@ -49,7 +37,7 @@ class UsersContainer extends React.Component {
                 users={this.props.users}
                 follow={this.props.follow}
                 unfollow={this.props.unfollow}
-                toogleFollowingProgress={this.props.toogleFollowingProgress}
+
                 followingInProgress={this.props.followingInProgress}
             />
         </>
@@ -79,12 +67,10 @@ let mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
     follow,
     unfollow,
-    setUsers,
     setCurrentPage,
-    setTotalUsersCount,
-    toogleIsFetching,
     toogleFollowingProgress,
-    getUsersThunkCreator,
+    getUsers,
+
 
 })
     (UsersContainer);

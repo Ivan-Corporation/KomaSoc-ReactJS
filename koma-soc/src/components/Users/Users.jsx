@@ -3,6 +3,8 @@ import styles from './Users.module.css'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import * as axios from 'axios'
+import { UsersAPI } from '../../api/api'
+import { unfollow } from './../../redux/users-reducer';
 
 
 
@@ -41,41 +43,15 @@ let Users = (props) => {
                         <div>
                             {u.followed
                                 ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                                    props.toogleFollowingProgress(true, u.id);
-                                    axios.delete(`https://social-network.samuraijs.com/api/1.0/users?follow/${u.id}`, {
-                                        withCredentials: true,
-                                        headers: {
-                                            "API-KEY": "4ba4a295-a4e6-4c0d-a254-01bda40e5ba2"
-                                        }
-                                    })
-                                        .then(response => {
-                                            if (response.data.resultCode === 0) {
-                                                props.unfollow(u.id)
-                                            }
-                                            props.toogleFollowingProgress(false, u.id);
-                                        });
+                                    props.unfollow(u.id);
+
 
                                 }}>Unfollow</button>
 
 
                                 : <button disabled={props.followingInProgress} onClick={() => {
-                                    props.toogleFollowingProgress(true, u.id);
+                                    props.follow(u.id);
 
-                                    axios.post(`https://social-network.samuraijs.com/api/1.0/users?follow/${u.id}`, {}, {
-                                        withCredentials: true,
-                                        headers: {
-                                            "API-KEY": "4ba4a295-a4e6-4c0d-a254-01bda40e5ba2"
-                                        }
-
-                                    })
-                                        .then(response => {
-                                            if (response.data.resultCode === 0) {
-                                                props.follow(u.id)
-
-                                            }
-                                            props.toogleFollowingProgress(false, u.id);
-
-                                        });
 
                                 }}>Follow</button>}
 

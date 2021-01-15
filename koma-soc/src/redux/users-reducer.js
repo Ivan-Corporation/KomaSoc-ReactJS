@@ -1,4 +1,4 @@
-
+import getUsers from './../components/Users/UsersContainer'
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -78,12 +78,12 @@ const usersReducer = (state = initialState, action) => {
 
 }
 
-export const follow = (userId) => ({
+export const followSuccess = (userId) => ({
     type: FOLLOW,
     userId
 })
 
-export const unfollow = (userId) => ({
+export const unfollowSuccess = (userId) => ({
     type: UNFOLLOW,
     userId
 })
@@ -115,15 +115,36 @@ export const toogleFollowingProgress = (isFetching, userId) => ({
 
 
 
-export const getUsersThunkCreator = (currentPage, pageSize) => {
+export const follow = (userId) => {
     return (dispatch) => {
-        dispatch(toogleIsFetching(true));
+        dispatch(toogleFollowingProgress(true, userId));
+        UsersAPI.follow(userId)
 
-        getUsers(currentPage, pageSize).then(data => {
-            dispatch(toogleIsFetching(false));
-            dispatch(setUsers(data.items));
-            dispatch(setTotalUsersCount(data.totalCount));
-        });
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(followSuccess(userId))
+
+                }
+                dispatch(toogleFollowingProgress(false, userId));
+
+            });
+    }
+}
+
+
+export const unfollow = (userId) => {
+    return (dispatch) => {
+        dispatch(toogleFollowingProgress(true, userId));
+        UsersAPI.unfollow(userId)
+
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(unfollowSuccess(userId))
+
+                }
+                dispatch(toogleFollowingProgress(false, userId));
+
+            });
     }
 }
 
