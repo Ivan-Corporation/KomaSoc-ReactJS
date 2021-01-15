@@ -1,39 +1,36 @@
 import { connect } from "react-redux";
-import { follow, setCurrentPage, setUsers, unfollow, setTotalUsersCount, toogleIsFetching } from "../../redux/users-reducer";
+import { follow, setCurrentPage, setUsers, unfollow, setTotalUsersCount, toogleIsFetching, toogleFollowingProgress, getUsersThunkCreator } from "../../redux/users-reducer";
 import * as axios from 'axios'
 import React from 'react'
 import Users from './Users';
 import Preloader from "../common/preloader/Preloader";
+import { getUsers } from "../../api/api";
 
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        this.props.toogleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
-            withCredentials: true,
-            headers: {
-                "API-KEY": "4ba4a295-a4e6-4c0d-a254-01bda40e5ba2"
-            }
-        })
-            .then(response => {
-                this.props.toogleIsFetching(false);
-                this.props.setUsers(response.data.items);
-                this.props.setTotalUsersCount(response.data.totalCount);
-            });
+
+        this.props.getUsersThunkCreator();
+
+        // this.props.toogleIsFetching(true);
+
+        // getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+        //     this.props.toogleIsFetching(false);
+        //     this.props.setUsers(data.items);
+        //     this.props.setTotalUsersCount(data.totalCount);
+        // });
     }
 
     onPageChanged = (pageNumber) => {
         this.props.setCurrentPage(pageNumber);
         this.props.toogleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {
-            withCredentials: true
-        })
-            .then(response => {
-                this.props.toogleIsFetching(false);
-                this.props.setUsers(response.data.items);
 
-            });
+        getUsers(pageNumber, this.props.pageSize).then(data => {
+            this.props.toogleIsFetching(false);
+            this.props.setUsers(data.items);
+
+        });
     }
 
 
@@ -52,6 +49,8 @@ class UsersContainer extends React.Component {
                 users={this.props.users}
                 follow={this.props.follow}
                 unfollow={this.props.unfollow}
+                toogleFollowingProgress={this.props.toogleFollowingProgress}
+                followingInProgress={this.props.followingInProgress}
             />
         </>
     }
@@ -66,34 +65,12 @@ let mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress,
     }
 }
 
-// let mapDispatchToProps = (dispatch) => {
-//     return {
-//         follow: (userId) => {
-//             dispatch(followAC(userId));
-//         },
-//         unfollow: (userId) => {
-//             dispatch(unfollowAC(userId));
-//         },
-//         setUsers: (users) => {
-//             dispatch(setUsersAC(users));
-//         },
-//         setCurrentPage: (pageNumber) => {
-//             dispatch(setCurrentPageAC(pageNumber));
-//         },
-//         setTotalUsersCount: (totalCount) => {
-//             dispatch(setUsersTotalCountAC(totalCount));
-//         },
-//         toogleIsFetching: (isFetching) => {
-//             dispatch(toogleIsFetchingAC(isFetching));
-//         },
 
-
-//     }
-// }
 
 
 
@@ -105,6 +82,9 @@ export default connect(mapStateToProps, {
     setUsers,
     setCurrentPage,
     setTotalUsersCount,
-    toogleIsFetching
+    toogleIsFetching,
+    toogleFollowingProgress,
+    getUsersThunkCreator,
+
 })
     (UsersContainer);
