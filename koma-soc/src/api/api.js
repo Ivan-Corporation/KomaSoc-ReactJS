@@ -19,11 +19,24 @@ export const UsersAPI = {
 
     },
     follow(userId) {
-        return instance.post(`https://social-network.samuraijs.com/api/1.0/users?follow/${userId.id}`)
+        return instance.post(`users?follow/${userId.id}`)
     },
 
     unfollow(userId) {
-        return instance.delete(`https://social-network.samuraijs.com/api/1.0/users?follow/${userId.id}`)
+        return instance.delete(`users?follow/${userId.id}`)
+    },
+    getProfile(userId) {
+        return instance.get(`profile/` + userId)
+
     }
 }
+
+
+export const authAPI = {
+    me() {
+        return instance.get(`auth/me`)
+    }
+}
+
+
 

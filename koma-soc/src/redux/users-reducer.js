@@ -1,4 +1,5 @@
-import getUsers from './../components/Users/UsersContainer'
+
+import { UsersAPI } from './../../api/api';
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
