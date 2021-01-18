@@ -1,6 +1,7 @@
 import Preloader from '../../common/preloader/Preloader'
 import classes from './ProfileInfo.module.css'
 import ProfileStatus from './ProfileStatus';
+import { updateStatus } from './../../../redux/profile-reducer';
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -15,7 +16,7 @@ const ProfileInfo = (props) => {
             </div>*/}
             <div className={classes.descriptionBlock}>
                 <img src={props.profile.photos.large} />
-                <ProfileStatus status={"Hello my friends"}/>
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
             </div>
         </div>
     )
