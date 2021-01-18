@@ -1,5 +1,5 @@
 
-import { UsersAPI } from './../../api/api';
+import { UsersAPI } from './../api/api';
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -113,6 +113,10 @@ export const toogleFollowingProgress = (isFetching, userId) => ({
     isFetching,
     userId,
 })
+export const getUsers = () => ({
+    
+})
+
 
 
 

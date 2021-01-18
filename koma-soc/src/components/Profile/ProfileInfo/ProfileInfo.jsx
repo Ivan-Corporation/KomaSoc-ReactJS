@@ -1,23 +1,24 @@
 import Preloader from '../../common/preloader/Preloader'
 import classes from './ProfileInfo.module.css'
+import ProfileStatus from './ProfileStatus';
 
 const ProfileInfo = (props) => {
-
     if (!props.profile) {
         return <Preloader />
     }
 
-    return <div>
+    return (
         <div>
-            <img className={classes.background} src='http://img.crazys.info/files/i/2012.5.22/1337696897_space-66.jpg' />
-        </div>
-        <div>
+          {/*  <div>
+                <img
+                    src='https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350'/>
+            </div>*/}
             <div className={classes.descriptionBlock}>
                 <img src={props.profile.photos.large} />
-            Ava + Decsription</div>
-
+                <ProfileStatus status={"Hello my friends"}/>
+            </div>
         </div>
-    </div>
+    )
 }
 
 export default ProfileInfo;
