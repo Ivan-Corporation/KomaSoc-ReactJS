@@ -1,6 +1,5 @@
 import React from 'react';
-import classes from './ProfileInfo.module.css';
-import { updateStatus } from './../../../redux/profile-reducer';
+import classes from './ProfileInfo.module.css'
 
 class ProfileStatus extends React.Component {
     
@@ -45,8 +44,8 @@ this.setState({
         return (
             <div>
                 {!this.state.editMode &&
-                    <div>
-                        <span onDoubleClick={ this.activateEditMode.bind(this) }>{this.props.status || "Empty status"}</span>
+                    <div className={classes.status}>
+                        <span  onDoubleClick={ this.activateEditMode.bind(this) }>{this.props.status || "Empty status"}</span>
                     </div>
                 }
                 {this.state.editMode &&

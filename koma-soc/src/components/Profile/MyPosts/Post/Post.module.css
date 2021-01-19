@@ -8,6 +8,10 @@
     border-radius: 50px;
 }
 
-span {
-  background-color: rgb(0, 0, 0);
+.likes {
+    background-color: rgb(0, 0, 0);
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    text-align:center; 
 }

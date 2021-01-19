@@ -114,7 +114,7 @@ export const toogleFollowingProgress = (isFetching, userId) => ({
     userId,
 })
 export const getUsers = () => ({
-    
+    type:""
 })
 
 
