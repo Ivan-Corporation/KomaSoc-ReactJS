@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/KomaSoc-ReactJS/static/css/main.abd22cd9.chunk.css",
+    "main.js": "/KomaSoc-ReactJS/static/js/main.ab6b612f.chunk.js",
+    "main.js.map": "/KomaSoc-ReactJS/static/js/main.ab6b612f.chunk.js.map",
+    "runtime-main.js": "/KomaSoc-ReactJS/static/js/runtime-main.9f0366b4.js",
+    "runtime-main.js.map": "/KomaSoc-ReactJS/static/js/runtime-main.9f0366b4.js.map",
+    "static/js/2.cc37cde4.chunk.js": "/KomaSoc-ReactJS/static/js/2.cc37cde4.chunk.js",
+    "static/js/2.cc37cde4.chunk.js.map": "/KomaSoc-ReactJS/static/js/2.cc37cde4.chunk.js.map",
+    "static/js/3.af92f3ce.chunk.js": "/KomaSoc-ReactJS/static/js/3.af92f3ce.chunk.js",
+    "static/js/3.af92f3ce.chunk.js.map": "/KomaSoc-ReactJS/static/js/3.af92f3ce.chunk.js.map",
+    "index.html": "/KomaSoc-ReactJS/index.html",
+    "static/css/main.abd22cd9.chunk.css.map": "/KomaSoc-ReactJS/static/css/main.abd22cd9.chunk.css.map",
+    "static/js/2.cc37cde4.chunk.js.LICENSE.txt": "/KomaSoc-ReactJS/static/js/2.cc37cde4.chunk.js.LICENSE.txt",
+    "static/media/DefaultPhoto.e6a97981.png": "/KomaSoc-ReactJS/static/media/DefaultPhoto.e6a97981.png",
+    "static/media/sun.41ed3ebb.svg": "/KomaSoc-ReactJS/static/media/sun.41ed3ebb.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9f0366b4.js",
+    "static/js/2.cc37cde4.chunk.js",
+    "static/css/main.abd22cd9.chunk.css",
+    "static/js/main.ab6b612f.chunk.js"
+  ]
+}
