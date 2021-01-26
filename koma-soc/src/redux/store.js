@@ -6,28 +6,28 @@ let store = {
     _state: {
         profilePage: {
             posts: [
-                {id: 1, message: 'Hi, how are you?', likesCount: 12},
-                {id: 2, message: 'It\'s my first post', likesCount: 11},
-                {id: 3, message: 'Blabla', likesCount: 11},
-                {id: 4, message: 'Dada', likesCount: 11}
+                {id: 1, message: 'I am new here!', likesCount: 0},
+                {id: 2, message: 'It\'s my lovely site', likesCount: 0},
+                {id: 3, message: 'Mmmm... i alone here?', likesCount: 1},
+                {id: 4, message: 'Okay...', likesCount: 101}
             ],
-            newPostText: 'it-kamasutra.com'
+            newPostText: ''
         },
         dialogsPage: {
             dialogs: [
-                {id: 1, name: 'Dimych'},
-                {id: 2, name: 'Andrew'},
-                {id: 3, name: 'Sveta'},
-                {id: 4, name: 'Sasha'},
-                {id: 5, name: 'Viktor'},
-                {id: 6, name: 'Valera'}
+                {id: 1, name: 'Ivan'},
+                {id: 2, name: 'Den'},
+                {id: 3, name: 'Alex'},
+                {id: 4, name: 'Churchill'},
+                {id: 5, name: 'Anonimus'},
+                {id: 6, name: 'Vitek'}
             ],
             messages: [
-                {id: 1, message: 'Hi'},
-                {id: 2, message: 'How is your it-kamasutra?'},
-                {id: 3, message: 'Yo'},
-                {id: 4, message: 'Yo'},
-                {id: 5, message: 'Yo'}
+                {id: 1, message: 'Hello'},
+                {id: 2, message: 'Привет, говорю'},
+                {id: 3, message: 'Ababa'},
+                {id: 4, message: 'There is many ways to find solution on this question'},
+                {id: 5, message: 'IQ 141'}
             ],
             newMessageBody: ""
         },

@@ -30,22 +30,26 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, savePro
     return (
         <div>
             <div className={s.descriptionBlock}>
-                <img src={profile.photos.large || userPhoto} className={s.mainPhoto}/>
-                {isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
+                <img src={profile.photos.large || userPhoto} className={s.mainPhoto} alt="UserPhoto"/>
+               <div className={s.status}> <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/></div>
+                {isOwner && 
+                <div className={s.photoButton}>
+                    <input type={"file"} onChange={onMainPhotoSelected}/>
+                    </div>}
 
                 { editMode
                     ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit}/>
                     : <ProfileData goToEditMode={() => {setEditMode(true)} } profile={profile} isOwner={isOwner}/> }
 
-                <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
+                
             </div>
         </div>
     )
 }
 
 const ProfileData = ({profile, isOwner, goToEditMode}) => {
-    return <div>
-        {isOwner && <div><button onClick={goToEditMode}>edit</button></div>}
+    return <div className={s.profileData}>
+        
         <div>
             <b>Full name</b>: {profile.fullName}
         </div>
@@ -66,6 +70,7 @@ const ProfileData = ({profile, isOwner, goToEditMode}) => {
             return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>
         })}
         </div>
+        {isOwner && <div className={s.editButton}><button onClick={goToEditMode}>edit</button></div>}
     </div>
 }
 

@@ -1,10 +1,10 @@
 .header {
     grid-area: h;
-    background-color: green;
+    background: linear-gradient(to top, coral, #3cf136);
 }
 
 .header img {
-    width: 20px;
+    width: 40px;
 }
 
 .loginBlock {

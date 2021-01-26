@@ -8,7 +8,8 @@ import {Textarea} from "../../common/FormsControls/FormsControls";
 const maxLength10 = maxLengthCreator(10);
 
 let AddNewPostForm = (props) => {
-    return <form onSubmit={props.handleSubmit}>
+    return <div className={s.posts}>
+    <form onSubmit={props.handleSubmit}>
         <div>
             <Field name="newPostText" component={Textarea} placeholder={"Post message"}
                    validate={[required, maxLength10]} />
@@ -16,7 +17,8 @@ let AddNewPostForm = (props) => {
         <div>
             <button>Add post</button>
         </div>
-    </form>;
+    </form>
+    </div>
 }
 
 let AddNewPostFormRedux = reduxForm({form: "ProfileAddNewPostForm"})(AddNewPostForm);
