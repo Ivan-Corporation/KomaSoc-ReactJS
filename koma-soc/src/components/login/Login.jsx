@@ -1,84 +1,53 @@
-import React from 'react'
-import { Form, Field } from 'react-final-form'
-import classes from './Login.module.css'
+import React from 'react';
+import {Field, reduxForm} from "redux-form";
+import {createField, Input} from "../common/FormsControls/FormsControls";
+import {required} from "../../utils/validators/validators";
+import {connect} from "react-redux";
+import {login} from "../../redux/auth-reducer";
+import {Redirect} from "react-router-dom";
+import style from "./../common/FormsControls/FormsControls.module.css"
+
+const LoginForm = ({handleSubmit, error, captchaUrl}) => {
+    return (
+        <form onSubmit={handleSubmit}>
+            {createField("Email", "email", [required], Input)}
+            {createField("Password", "password", [required], Input, {type: "password"})}
+            {createField(null, "rememberMe", [], Input, {type: "checkbox"}, "remember me")}
+
+            { captchaUrl && <img src={captchaUrl} />}
+            { captchaUrl &&  createField("Symbols from image", "captcha", [required], Input, {}) }
 
 
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
-
-const onSubmit = async values => {
-  await sleep(2300)
-  window.alert(JSON.stringify(values, 0, 2))
+            {error && <div className={style.formSummaryError}>
+                {error}
+            </div>
+            }
+            <div>
+                <button>Login</button>
+            </div>
+        </form>
+    )
 }
 
-const Login = () => (
-  <>
-  <h1>Sign In</h1>
-    <Form
-      onSubmit={onSubmit}
-      validate={values => {
-        const errors = {}
-        if (!values.username) {
-          errors.username = 'Required' 
-        }
-        if (!values.password) {
-          errors.password = 'Required'
-        }
-        if (!values.confirm) {
-          errors.confirm = 'Required'
-        } else if (values.confirm !== values.password) {
-          errors.confirm = 'Must match'
-        }
-        return errors
-      }}
-      render={({ handleSubmit, form, submitting, pristine, values }) => (
-        <form onSubmit={handleSubmit}>
+const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
 
-          <Field name="username">
-            {({ input, meta }) => (
-              <div>
-                <label>Username</label>
-                <input {...input} type="text" placeholder="Username" />
-                {meta.error && meta.touched && <span  className={classes.error}>{meta.error}</span>}
-              </div>
-            )}
-          </Field>
+const Login = (props) => {
+    const onSubmit = (formData) => {
+        props.login(formData.email, formData.password, formData.rememberMe, formData.captcha);
+    }
 
-          <Field name="password">
-            {({ input, meta }) => (
-              <div>
-                <label>Password</label>
-                <input {...input} type="password" placeholder="Password" />
-                {meta.error && meta.touched && <span  className={classes.error}>{meta.error}</span>}
-              </div>
-            )}
-          </Field>
+    if (props.isAuth) {
+        return <Redirect to={"/profile"}/>
+    }
 
-          <Field name="confirm">
-            {({ input, meta }) => (
-              <div>
-                <label>Password confirm</label>
-                <input {...input} type="password" placeholder="Confirm" />
-                {meta.error && meta.touched && <span  className={classes.error}>{meta.error}</span>}
-              </div>
-            )}
-          </Field>
+    return <div>
+        <h1>Login</h1>
+        <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>
+    </div>
+}
+const mapStateToProps = (state) => ({
+    captchaUrl: state.auth.captchaUrl,
+    isAuth: state.auth.isAuth
+})
 
-          <div className="buttons">
-            <button type="submit" disabled={submitting}>
-              Submit
-            </button>
-            <button
-              type="button"
-              onClick={form.reset}
-              disabled={submitting || pristine}
-            >
-              Reset
-            </button>
-          </div>
-          <pre>{JSON.stringify(values, 0, 2)}</pre>
-        </form>
-      )}
-    />
-  </>
-)
-export default Login;
+export default connect(mapStateToProps, {login})(Login);

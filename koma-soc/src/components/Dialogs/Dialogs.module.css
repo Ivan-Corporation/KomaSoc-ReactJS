@@ -1,28 +1,11 @@
 .dialogs {
     display: grid;
     grid-template-columns: 2fr 10fr;
-    
-   
 }
-
-.dialog {
-    
-}
-
 
 .dialogsItems {
     padding: 10px;
-    border-right: black 2px solid;
-
-}
-
-.dialogsItems img {
-    width: 50px;
-    height: 50px;
-    border: black 2px solid;
-    border-radius: 25px;
-    margin: auto;
-  
+    color: white;
 }
 
 .dialogsItems .active {
@@ -31,10 +14,9 @@
 
 .messages {
     padding: 10px;
-    
 }
 
-.message {
-
+.messages .message {
+    color: white;
 }
 
